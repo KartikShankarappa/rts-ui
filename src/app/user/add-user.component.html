@@ -1,0 +1,45 @@
+<mat-card>
+  <form #userForm="ngForm" (ngSubmit)="save(userForm.value)">
+    <mat-card-header>
+      <mat-card-title><h2>{{user.userFullName ? 'Edit' : 'Add'}} User</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <input type="hidden" name="userId" [(ngModel)]="user.userId">
+      <mat-form-field>
+             <input matInput placeholder="Full User Name" [(ngModel)]="user.userFullName" required name="userFullName" #name>
+      </mat-form-field>
+      <br>
+          <br>
+              <br>
+                  <br>
+    <mat-form-field>
+      <mat-select placeholder="Status" [(ngModel)]="user.status" name="status" #name>
+         <mat-option *ngFor="let profileStatus of profileStatuses" [value]="profileStatus.value"> {{ profileStatus.viewValue }} </mat-option>
+      </mat-select>
+    </mat-form-field>
+      <br>
+          <br>
+              <br>
+                  <br>
+                      <br>
+       <mat-form-field>
+         <mat-select placeholder="Role" [(ngModel)]="user.role" required  name="role" #name>
+             <mat-option *ngFor="let appRole of applicationRoles" [value]="appRole.value"> {{ appRole.viewValue }} </mat-option>
+         </mat-select>
+       </mat-form-field> 
+          <br>
+              <br>
+                  <br>
+                      <br>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.form.valid">Save</button>
+      <button mat-raised-button color="secondary" (click)="remove(user.userId)" *ngIf="user.userId" type="button">Delete</button>
+      <button mat-raised-button color="secondary" (click)="remove(user.userId)" *ngIf="user.userId" type="button">Reset Password</button>
+      <a mat-button routerLink="/users">Cancel</a>
+    </mat-card-actions>
+    <mat-card-footer>
+    </mat-card-footer>
+  </form>  
+
+</mat-card>

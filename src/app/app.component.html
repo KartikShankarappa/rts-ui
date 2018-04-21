@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Resume Tracking</span>
+    <span class="example-spacer"></span>
+     {{title}} &nbsp; 
+    <!-- <a routerLinkActive="active" routerLink="/login">Login</a> &nbsp; -->
+    <a [hidden]="isAuthentocated()" routerLink=""><button (click)="logout()" mat-button-toggle>Logout</button></a> &nbsp;
+    <!-- <a routerLink="search"><button mat-button-toggle>Search</button></a> &nbsp; -->
+   <a [hidden]="isAuthentocated()" routerLink="users"><button mat-button-toggle>Manage Users</button></a> &nbsp;
+     <!-- <a routerLink="candidates"><button mat-button-toggle>Candidate</button></a> &nbsp; -->
+    </mat-toolbar-row>
+
+</mat-toolbar>
+
+<router-outlet></router-outlet>

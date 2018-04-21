@@ -1,0 +1,45 @@
+<br>
+<br>
+<mat-card>  
+ <h3 mat-card-header>Users</h3>
+ <mat-card-content>
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <!-- Full Name Column -->
+    <ng-container matColumnDef="userFullName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.userFullName}} </mat-cell>
+    </ng-container>
+
+    <!-- User Id Column -->
+    <ng-container matColumnDef="userId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> User Id </mat-header-cell>
+      <mat-cell *matCellDef="let user"> <a mat-button-toggle matTooltip="Click the link to see user details" [routerLink]="['/edit-user', user.userId]"> {{user.userId}} </a> </mat-cell>
+    </ng-container>
+
+    <!-- Role Column -->
+    <ng-container matColumnDef="role">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.role}} </mat-cell>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.status}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+</mat-card-content>
+
+<mat-card-footer>
+     <div> 
+       &nbsp;&nbsp;&nbsp;&nbsp;<button mat-raised-button color="primary" [routerLink]="['/add-user']">Add</button>
+    </div>
+</mat-card-footer>
+
+</mat-card>

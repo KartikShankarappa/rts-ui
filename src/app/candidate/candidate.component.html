@@ -1,0 +1,46 @@
+<br>
+<br>
+<mat-card>  
+ <h3 mat-card-header>Candidates</h3>
+ <mat-card-content>
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <!-- First Name Column -->
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let candidate"> {{candidate.firstName}} </mat-cell>
+    </ng-container>
+
+    <!-- Last Name Column -->
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let candidate"> {{candidate.lastName}} </mat-cell>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let candidate"> {{candidate.applicationStatus}} </mat-cell>
+    </ng-container>
+
+    <!-- Candidate Id Column -->
+    <ng-container matColumnDef="candidateId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Candidate Id </mat-header-cell>
+      <mat-cell *matCellDef="let candidate"> <a mat-button-toggle matTooltip="Click the link to see candidate details" [routerLink]="['/edit-candidate', candidate.candidateId]"> {{candidate.candidateId}} </a> </mat-cell>
+    </ng-container>
+
+  
+     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+</mat-card-content>
+
+   <mat-card-footer>
+     <div> 
+       &nbsp;&nbsp;&nbsp;&nbsp;<button mat-raised-button color="primary" [routerLink]="['/add-candidate']">Add</button>
+    </div>
+</mat-card-footer>
+
+</mat-card>

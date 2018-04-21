@@ -1,0 +1,35 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<br>
+<br>
+<div class="alert alert-danger" [hidden]="!error">
+  There was a problem logging in. Please try again.
+</div>
+
+<mat-card class="example-card">
+<mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+    <div mat-card-avatar class="example-header-image"></div>  
+  </mat-card-header>
+   <mat-card-content>
+     <mat-form-field>
+         <input matInput placeholder="Enter your userid" [formControl]="userId" required>
+         <mat-error *ngIf="userId.invalid">{{getUserIdErrorMessage()}}</mat-error>
+     </mat-form-field>
+     <br>
+     <mat-form-field>
+    <input matInput placeholder="Enter your password" [formControl]="userPwd" [type]="hide ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
+
+  </mat-card-content>
+  <mat-card-actions>
+  	  <div class="button-row"> 
+       <button mat-raised-button color="gray" (click)="login()">Login</button> 
+     </div>
+  </mat-card-actions>
+  <mat-card-footer>
+  	<span class="version-info">Current build: 1.0.0</span>
+  </mat-card-footer>
+</mat-card>
+
+  

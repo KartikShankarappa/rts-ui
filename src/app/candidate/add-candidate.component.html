@@ -1,0 +1,115 @@
+<mat-card>
+  <form #candidateForm="ngForm" (ngSubmit)="save(candidateForm.value)">
+    <mat-card-header>
+      <mat-card-title><h2>{{candidate.firstName ? 'Edit' : 'Add'}} Candidate</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+    <input type="hidden" name="candidateId" [(ngModel)]="candidate.candidateId">      
+
+    <table class="example-full-width" cellspacing="0"><tr>
+    <td>
+       <mat-form-field class="example-full-width">
+             <input matInput placeholder="First Name" [(ngModel)]="candidate.firstName" required name="firstName" #name>
+      </mat-form-field>   
+    </td>
+    <td>
+     <mat-form-field class="example-full-width">
+             <input matInput placeholder="Last Name" [(ngModel)]="candidate.lastName" required name="lastName" #name>
+      </mat-form-field>
+  </td>
+  </tr></table>
+
+
+ <table class="example-full-width" cellspacing="0"><tr>
+    <td>
+      <mat-form-field class="example-full-width">
+         <input matInput placeholder="Email" [(ngModel)]="candidate.email" required [formControl]="emailFormControl">
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+    </td>
+    <td>
+    <mat-form-field class="example-full-width">
+    <input type="tel" matInput placeholder="Telephone" [(ngModel)]="candidate.phone" name="phone" #name>
+  </mat-form-field>
+  </td>
+   <td>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Bill Rate" type="number" [(ngModel)]="candidate.billRate" name="billRate" #name class="example-right-align">
+    <span matPrefix>$&nbsp;</span>
+    <span matSuffix>.00</span>
+  </mat-form-field>
+  </td>
+  </tr></table>
+  
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td>
+      <mat-form-field class="example-full-width">
+         <input matInput placeholder="Source" [(ngModel)]="candidate.source" name="source" #name>
+     </mat-form-field>
+    </td>
+    </tr></table>
+
+ <table class="example-full-width" cellspacing="0"><tr>
+    <td>
+    <mat-form-field class="example-full-width">
+    <input type="tel" matInput placeholder="Last Job Title" [(ngModel)]="candidate.lastJobTitle" name="lastJobTitle" #name>
+  </mat-form-field>
+  </td>
+   <td>
+    <mat-form-field class="example-full-width">
+    <input type="number" matInput placeholder="Current Job Title" [(ngModel)]="candidate.currentJobTitle" name="currentJobTitle" #name>
+  </mat-form-field>
+  </td>
+  </tr></table>
+
+   <p>
+    <mat-form-field matTooltip="Please enter comma seperated skills..." class="example-full-width">
+       <textarea matInput placeholder="Skills" [(ngModel)]="candidate.skills" name="skills" required #name> </textarea>
+    </mat-form-field>
+  </p>
+
+  <p>
+      <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Client Name" [(ngModel)]="candidate.clientName" name="clientName" #name></textarea>
+    </mat-form-field>
+  </p>
+
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width">
+      <input matInput placeholder="City" [(ngModel)]="candidate.clientCity" name="clientCity" #name>
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+        <input matInput placeholder="State" [(ngModel)]="candidate.clientState" name="clientState" #name>
+        </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <input matInput #postalCode maxlength="5" placeholder="Postal Code" [(ngModel)]="candidate.clientZip" name="clientZip" #name>
+      <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+    </mat-form-field></td>
+  </tr></table>
+
+   
+   <p>
+    <mat-form-field>
+      <mat-select placeholder="Last Action" [(ngModel)]="candidate.applicationStatus" name="status" #name>
+         <mat-option *ngFor="let profileStatus of profileStatuses" [value]="profileStatus.value"> {{ profileStatus.viewValue }} </mat-option>
+      </mat-select>
+    </mat-form-field>
+     </p>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!candidateForm.form.valid">Save</button>
+      <button mat-raised-button color="secondary" (click)="remove(candidate.candidateId)" *ngIf="candidate.candidateId" type="button">Delete</button>
+      <button mat-raised-button color="secondary" (click)="remove(candidate.candidateId)" *ngIf="candidate.candidateId" type="button">Upload Resume</button>
+      <a mat-button routerLink="/candidates">Cancel</a>
+    </mat-card-actions>
+    <mat-card-footer>
+    </mat-card-footer>
+  </form>  
+
+</mat-card>
